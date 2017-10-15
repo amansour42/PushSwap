@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   digit_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/13 17:33:03 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/13 18:08:14 by amansour         ###   ########.fr       */
+/*   Created: 2017/10/15 10:33:53 by amansour          #+#    #+#             */
+/*   Updated: 2017/10/15 11:18:26 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int		main(int ac, char **av)
+int	digit_test(char *s)
 {
-	t_pile	*pile;
-	int		i;
+	int i;
 
-	pile = NULL;
-	i = 0;
-	while (++i < ac)
+	i = -1;
+	while (s[++i])
 	{
-		if (!digit_test(av[i]))
-			exit_msg(ERROR);
-		fill_pile(&pile, ft_strsplit(av[i],' '));
-		if (!pile)
+		if (!ft_isdigit(s[i]) &&  s[i] != ' ')
 			return (0);
 	}
-	return (0);
+	return (1);
 }

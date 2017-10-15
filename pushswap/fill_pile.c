@@ -5,32 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/13 17:40:27 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/13 18:08:09 by amansour         ###   ########.fr       */
+/*   Created: 2017/10/15 11:08:55 by amansour          #+#    #+#             */
+/*   Updated: 2017/10/15 11:32:10 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void fill_pile(t_pile **pile, char **str)
+int		check_entry(int ac, char **av)
 {
-	t_pile *tmp;
-	t_pile *prev;
+	int		i;
+	int		n;
 
-	prev = *pile;
-	if (!(*pile) && !(tmp = (t_pile*)malloc(sizeof(t_pile))))
-		return ;
-	while (*str)
+	i = 0;
+	n = 0;
+	while (++i < ac)
 	{
-		tmp->nb = ft_atoi(*str);
-		if (prev)
-			prev->p = tmp;
-		else 
-			prev = tmp;
-		++str;
-		prev = tmp;
+		if (!digit_test(av[i]))
+			return (0);//pour le check de l'existence que des digits
+		n += nbr_cases(ft_strsplit(av[i],' '));//calculer le nombre de nombres existants
 	}
-	tmp->p = NULL;
-	free(tmp);
+	return (n);
+}
+
+static void	fill_one_string(int **p, int *start, char **s)
+{
+	int n;
+
+	n = nbr_cases(s);
+	while (n--)
+	{
+		(*p)[*start] = ft_atoi(*s);
+		++s;
+		*start += 1;
+	}
 	return ;
+}
+
+int			fill(int ac, char **av, int **p)
+{
+
+	int		i;
+	int		n;
+
+	*p = NULL;
+	if (!(n = check_entry(ac, av)))
+		return (0);
+	if (((*p) = (int*)malloc(sizeof(int) * n)))
+	{
+		i = 0;
+		n = 0;
+		while (++i < ac)
+			fill_one_string(p, &n,ft_strsplit(av[i], ' '));
+		return (n);
+	}
+	return (0);
 }

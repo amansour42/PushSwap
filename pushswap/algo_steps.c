@@ -6,13 +6,13 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 13:39:29 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/15 17:27:32 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/16 15:23:18 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-char    *treat_a(int **p, int n, int *a) //n est le nombre de cases remplies, attention, il faut garder le vrai nombre
+char    *treat_a(int **p, int n, int *a) //OK
 {
 	int     min;
 
@@ -20,94 +20,75 @@ char    *treat_a(int **p, int n, int *a) //n est le nombre de cases remplies, at
 	*a = (*p)[0];
 	if (*a >= min)
 	{
-		if (n >= 3 && (*p)[1] >= (*p)[n - 1])
+		if (n >= 3 && min == (*p)[n - 1])
 		{
 			reverse_rotate(p, n);
-            *a = (*p)[0];
-            return ("ra\n");          
+			*a = (*p)[0];
+			return ("ra\n");
 		}
 		else
 		{
 			*a = (*p)[1];
 			ft_swap(&(*p)[0], &(*p)[1]);
-			//printf("HI %d\n", *a);
-            return ("sa\n");
+			return ("sa\n");
 		}
 	}
 	return ("");
 }
 
-void	add_to(int **pile, int a, int *n, char c)
+void	add_to(int **pile, int a, int *n, char c)//OK
 {
 	int i;
-
-    //printf("B before\n");
-    //printf("AAAAAAAAAAAA = %d\n", a);
-    //affiche(*pile, *n);
+	
 	*n += 1;
-    i = *n - 1;
+	i = *n - 1;
 	while (i >= 1)
-    {
+	{
 		(*pile)[i] = (*pile)[i - 1];
-        --i;
-    }
+		--i;
+	}
 	(*pile)[0] = a;
 	if (c == 'a')
 		write(1, "pa\n", 3);
 	else
 		write(1, "pb\n", 3);
-    //printf("B after\n");
-    //affiche(*pile, *n); 
 	return ;
 }
 
-t_list  *treat_b(int **p, int len)//utiliser ft_lstnew.
+t_opt	ft_opnew(int n, char *s)
 {
-	int     i;
-    t_list  *l;
-    t_list  *new;
+	t_opt op;
 
-    l = NULL;
-    if (len == 1)
-		return (NULL);
-	if ((*p)[0] <= (*p)[len - 1] && len != 2 && (l = (t_list*)malloc(sizeof(t_list))))
-    {
-            l->content = (void*)RB;
-            l->next = NULL;
-		    rotate(p, len);
-    }
-	else if ((*p)[0] < (*p)[len - 1])
+	op.s = s;
+	op.n = n;
+	return (op);
+}
+
+t_opt	treat_b(int **p, int len)
+{
+	int		i;
+	t_opt	op;
+
+	op = ft_opnew(0, NULL);
+	if (len == 1)
+		return (op);
+	if ((*p)[0] <= (*p)[len - 1])
 	{
-        i = 1;
+		rotate(p, len);
+		return (ft_opnew(1, RB));
+	}
+	else if ((*p)[0] < (*p)[1])
+	{
+		op.s = SB;
 		while ((*p)[0] < (*p)[1])
 		{
-            if (!(new = (t_list*)malloc(sizeof(t_list))))
-                return (NULL);
-            new->content = (void*)SB;
-            new->next = NULL;
-            if (!l)
-		        l = new;
-            else
-                ft_lstadd(&l, new);
-            ft_swap(&(*p)[0], &(*p)[1]); 
-			++i;
-            if (!(new = (t_list*)malloc(sizeof(t_list))))
-                return (NULL);
-            new->next = NULL;
-            new->content = (void*)RB;
-            ft_lstadd(&l, new);
-            rotate(p, len);
-            free(new);
+			++op.n;
+			ft_swap(&(*p)[0], &(*p)[1]);
+			rotate(p, len);
 		}
-        while (--i)
-        {
-             if (!(new = (t_list*)malloc(sizeof(t_list))))
-                return (NULL);
-            new->next = NULL;
-            new->content = (void*)RB;
-            ft_lstadd(&l, new); 
-            reverse_rotate(p, len);
-        }
-    }
-	return (l);
+		i = op.n + 1;
+		while (--i)
+			reverse_rotate(p, len);
+	}
+	return (ft_opnew(0, NULL));
 }

@@ -25,7 +25,8 @@ int		main(int ac, char **av)
 	//Excecuter le tri
 	if (!check_order(pile, len))
 		sort(&pile, len);
-	affiche(pile, len);
+	printf("FINAL RESULT\n");
+    affiche(pile, len);
 	//Afficher les instructions
 	return (0);
 }

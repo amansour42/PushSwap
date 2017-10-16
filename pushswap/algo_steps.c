@@ -12,77 +12,102 @@
 
 #include "pushswap.h"
 
-int		treat_a(int **p, int n) //n est le nombre de cases remplies, attention, il faut garder le vrai nombre
+char    *treat_a(int **p, int n, int *a) //n est le nombre de cases remplies, attention, il faut garder le vrai nombre
 {
-	int a;
-	int min;
+	int     min;
 
 	min = (n >= 3) ? MIN((*p)[1], (*p)[n - 1]) : (*p)[1];
-	a = (*p)[0];
-	if (a >= min)
+	*a = (*p)[0];
+	if (*a >= min)
 	{
 		if (n >= 3 && (*p)[1] >= (*p)[n - 1])
 		{
-		//	printf("deuxieme >= dernier => echange dernier et premier et mettre le sommet en B\n");
-			reverse_rotate(p, n, 'a');
-			a = (*p)[0];
+			reverse_rotate(p, n);
+            *a = (*p)[0];
+            return ("ra\n");          
 		}
 		else
 		{
-			//printf("dernier > deuxieme => echange deuxieme  et premier et mettre le sommet en B\n");
-			a = (*p)[1];
+			*a = (*p)[1];
 			ft_swap(&(*p)[0], &(*p)[1]);
-//			printf("asbar \n");
-			//affiche(*p, n);
-			write(1, "sa\n", 3);
-			//return (a);
+			//printf("HI %d\n", *a);
+            return ("sa\n");
 		}
 	}
-//	printf("aucun echange et mettre le sommet en B\n");
-//	if (n != 2)
-//		decale(p, n);
-	return (a);
+	return ("");
 }
 
 void	add_to(int **pile, int a, int *n, char c)
 {
 	int i;
 
-	i = *n + 1;
-	while (--i > 0)
-	{
-//		printf("I = %d\n", i);
-		(*pile)[i] = (*pile)[i - 1];
-	}
-	(*pile)[0] = a;
+    //printf("B before\n");
+    //printf("AAAAAAAAAAAA = %d\n", a);
+    //affiche(*pile, *n);
 	*n += 1;
+    i = *n - 1;
+	while (i >= 1)
+    {
+		(*pile)[i] = (*pile)[i - 1];
+        --i;
+    }
+	(*pile)[0] = a;
 	if (c == 'a')
 		write(1, "pa\n", 3);
 	else
 		write(1, "pb\n", 3);
+    //printf("B after\n");
+    //affiche(*pile, *n); 
 	return ;
 }
 
-void	treat_b(int **p, int len) //len le nombre de cases remplies//PB : exemple 57 71 67 29 81 32 94
+t_list  *treat_b(int **p, int len)//utiliser ft_lstnew.
 {
-	if (len == 1)
-		return ;//a definir apres
-	if ((*p)[0] <= (*p)[len - 1])
+	int     i;
+    t_list  *l;
+    t_list  *new;
+
+    l = NULL;
+    if (len == 1)
+		return (NULL);
+	if ((*p)[0] <= (*p)[len - 1] && len != 2 && (l = (t_list*)malloc(sizeof(t_list))))
+    {
+            l->content = (void*)RB;
+            l->next = NULL;
+		    rotate(p, len);
+    }
+	else if ((*p)[0] < (*p)[len - 1])
 	{
-		rotate(p, len, 'b');
-		printf("0 <= dernier => faire une rotation\n");
-		printf("THIS B \n");
-		affiche(*p, len);
-	}
-	else if ((*p)[0] < (*p)[1])
-	{
-//		printf("0 <= duxieme => faire des swaps jusqu'a arriver au bon ordre\n");
+        i = 1;
 		while ((*p)[0] < (*p)[1])
 		{
-			write(1, "sb\n", 3);
-			ft_swap(&(*p)[0], &(*p)[1]);
-			rotate(p, len, 'b');
+            if (!(new = (t_list*)malloc(sizeof(t_list))))
+                return (NULL);
+            new->content = (void*)SB;
+            new->next = NULL;
+            if (!l)
+		        l = new;
+            else
+                ft_lstadd(&l, new);
+            ft_swap(&(*p)[0], &(*p)[1]); 
+			++i;
+            if (!(new = (t_list*)malloc(sizeof(t_list))))
+                return (NULL);
+            new->next = NULL;
+            new->content = (void*)RB;
+            ft_lstadd(&l, new);
+            rotate(p, len);
+            free(new);
 		}
-	}
-	return ;
+        while (--i)
+        {
+             if (!(new = (t_list*)malloc(sizeof(t_list))))
+                return (NULL);
+            new->next = NULL;
+            new->content = (void*)RB;
+            ft_lstadd(&l, new); 
+            reverse_rotate(p, len);
+        }
+    }
+	return (l);
 }

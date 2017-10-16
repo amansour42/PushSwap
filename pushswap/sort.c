@@ -12,47 +12,57 @@
 
 #include "pushswap.h"
 
-void		sort(int **p, int len)
+void		sort(int **p, int n)//norminette = une ligne en plus
 {
-
 	int		a;
 	int		m;
 	int		*b;
-	int		n;
-	//how = NULL;
-	m = 0;
-	n = len;
-	if ((b = (int*)malloc(sizeof(int) * n)))
+	t_list  *l;;
+
+    m = 0;
+    l = NULL;
+  
+    if ((b = (int*)malloc(sizeof(int) * n)))
 	{
-		//printf("HELLO : On commence!\n");
-		while (!check_order(*p, n) || !m || (*p)[0] < ft_max(b, n))
+		while (n != 2 && (!check_order(*p, n) || !m || (*p)[0] < b[m - 1]))
 		{
-			a = treat_a(p, n);
-		//	printf("LE AAAAAAAAAAAa = %d\n", a);
-			//printf("A\n");
-			//affiche(*p, n);
-				decale(p, n);
-		//		printf("HELLO : On est dans la boucle du tri!\n");
-				--n;
-				add_to(&b, a, &m, 'b');
-				//printf("M = %d\n", m);
-				treat_b(&b, m);
-			//	printf("THIS IS B!\n");
-			//	affiche(b, m);
-			//printf("A\n");
-			//affiche(*p, n);
+			to_write(l, treat_a(p, n, &a));
+            if (l)
+            {
+                ft_lstdel2(&l);
+                l = NULL;//pas obligatoire
+            }
+		    //printf("ya rab a = %d\n", a);
+            add_to(&b, a, &m, 'b'); 
+            decale(p, n);
+            --n;
+		    //add_to(&b, a, &m, 'b');
+		    if (m == 2 && !check_invorder(b, n))   
+            {
+                ft_swap(&b[0], &b[1]);
+                l = (t_list*)malloc(sizeof(t_list));
+                l->next = NULL;
+                l->content = (void*)SB;
+             } 
+            else
+                l = treat_b(&b, m);
 		}
-		//printf("THIS IS B!\n");
-		//affiche(b, m);
-		//printf("THIS IS A!\n");
-		//affiche(*p, n);
-		a = -1;
-		//printf("HELLO : On est a la fin du tri!\n");
-		while (++a < m)
-		{
-		//affiche (b, m);
+        if (n == 2 && !check_order(*p, n))   
+        {
+            ft_swap(&(*p)[0], &(*p)[1]);
+            to_write(l, "sa\n");
+        } 
+        else
+            write_b(l);
+        if (l)
+            ft_lstdel2(&l);
+	   // printf("A\n");
+       // affiche(*p, n);
+       // printf("B\n");
+       // affiche(b, m);
+        a = -1;
+		while (b && ++a < m)
 		add_to(p, b[a], &n, 'a');
-		}
-	}
+    }
 	return ;
 }

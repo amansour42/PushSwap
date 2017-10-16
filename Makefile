@@ -23,7 +23,7 @@ LIB = libft/libft.a
 
 SRC = main.c fill_pile.c msg.c digit_test.c\
 	  nbr_cases.c sort.c check_order.c\
-	  algo_steps.c instructions.c\
+	  algo_steps.c instructions.c to_write.c\
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
@@ -48,7 +48,7 @@ clean:
 	@make -C libft clean
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(LIB)
 
 re: fclean
 	make

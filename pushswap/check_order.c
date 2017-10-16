@@ -27,3 +27,19 @@ int check_order(int *p, int n)
 	}
 	return (1);
 }
+
+int check_invorder(int *p, int n)
+{
+	int i;
+	int nb;
+
+	i = 0;
+	nb = *p;
+	while (++i < n)
+	{
+		if (nb < p[i])
+			return (0);
+		nb = p[i];
+	}
+	return (1);
+}              

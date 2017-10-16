@@ -12,17 +12,13 @@
 
 #include "pushswap.h"
 
-void	rotate(int **p, int n, char c)
+void	rotate(int **p, int n)
 {
 	int tmp;
 
 	tmp = (*p)[0];
 	decale(p, n);
 	(*p)[n - 1] = tmp;
-	if (c == 'a')
-		write(1, "ra\n", 3);
-	else
-		write(1, "rb\n", 3);
 	return;
 }
 
@@ -36,7 +32,7 @@ void	decale(int **p, int n)
 	return ;
 }
 
-void	reverse_rotate(int **p, int n, char c)
+void	reverse_rotate(int **p, int n)
 {
 	int i;
 	int tmp;
@@ -46,9 +42,5 @@ void	reverse_rotate(int **p, int n, char c)
 	while(--i)
 		(*p)[i] = (*p)[i - 1];
 	(*p)[0] = tmp;
-	if (c == 'a')
-		write(1, "rra\n", 4);
-	else
-		write(1, "rrb\n", 4);
 	return ;
 }

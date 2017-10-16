@@ -17,6 +17,9 @@
 # define KO		"KO\n"
 # define ERROR	"Error\n"
 # define MIN(a, b) (a < b) ? a : b
+# define RB     "rb\n"
+# define RRB    "rrb\n"
+# define SB     "sb\n"
 
 #include <stdlib.h>
 #include "../libft/libft.h"
@@ -36,13 +39,17 @@ int				digit_test(char *str);
 void			exit_msg(char *str);
 void			sort(int **p, int n);
 int				check_order(int *p, int n);
+int				check_invorder(int *p, int n);   
 //sort
-int				treat_a(int **p, int n);
-void			treat_b(int **p, int n);
+char            *treat_a(int **p, int n, int *a);
+t_list  		*treat_b(int **p, int n);
 void			add_to(int **p, int nbr, int *n, char c);
-void			rotate(int **p, int n, char c);
-void			reverse_rotate(int **p, int n, char c);
+void			rotate(int **p, int n);
+void			reverse_rotate(int **p, int n);
 void			decale(int **p, int n);
+//Affichage instructions
+void            to_write(t_list *l, char *s);
+void            write_b(t_list *l);
 //Second
 int				nbr_cases(char **str);
 //extra

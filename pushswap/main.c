@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 16:30:16 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/15 15:33:45 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/16 12:06:25 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		main(int ac, char **av)
 	printf("FINAL RESULT\n");
     affiche(pile, len);
 	//Afficher les instructions
+	while (1);
 	return (0);
 }
 

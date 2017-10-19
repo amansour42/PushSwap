@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 15:08:22 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/18 19:34:54 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/19 12:06:51 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ void				delete_pile_end(t_int **pile);
 void				delete_steps_end(t_string **steps);
 void				delete_pile_first(t_int **pile);
 void				delete_steps_first(t_string **steps);
-int 				delete_pile(t_int **pile);
+void				delete_pile(t_int **pile);
 void				delete_steps(t_string **steps);
 void				clean_lists(t_int **p, t_string **steps);
 int					isempty_list(t_int *list);
-void                fill(int ac, char **av, t_int **pile);
-int					digit_test(char *str);
+t_int				*fill(int ac, char **av);
 void				exit_msg(char *str);
 t_string			*read_steps(int fd, int *n);
 int					check_order(t_int *p);

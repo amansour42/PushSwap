@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 10:25:18 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/15 11:22:15 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/19 11:12:03 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int	nbr_cases(char **str)
 	i = 0;
 	while (str[i])
 		++i;
-	printf("nbr de cases %d\n", i);
-    return (i);
+	return (i);
 }

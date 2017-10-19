@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/17 11:35:32 by amansour          #+#    #+#              #
-#    Updated: 2017/10/18 17:46:54 by amansour         ###   ########.fr        #
+#    Updated: 2017/10/19 12:07:42 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ_PATH = ./obj
 INCLUD  = ./include
 LIB = libft/libft.a
 
-SRC = main.c fill_pile.c msg.c digit_test.c\
+SRC = main.c fill_pile.c msg.c\
 	  nbr_cases.c check_order.c instructions.c\
       read_steps.c apply.c add_end_lists.c add_first_lists.c\
       delete_alink.c delete_list.c isempty_list.c\

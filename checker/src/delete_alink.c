@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 16:36:41 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/18 19:38:36 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/19 10:43:51 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void	delete_pile_end(t_int **pile)
 	{
 		if (!((*pile)->next))
 		{
-			//printf("je suis rentre1e\n");
 			free(*pile);
 			*pile = NULL;
 		}
 		else
 		{
-			//printf("je suis rentree2\n");
 			tmp = *pile;
 			while ((tmp->next)->next)
 				tmp = tmp->next;
@@ -36,7 +34,6 @@ void	delete_pile_end(t_int **pile)
 			free(ptmp);
 		}
 	}
-    //while (1);
 	return ;
 }
 

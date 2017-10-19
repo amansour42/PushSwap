@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 10:07:28 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/01 12:33:53 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/19 12:03:53 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ char			**ft_strsplit(char const *s, char c)
 			i++;
 		}
 	}
-    printf("cases = %zu\n", nb);  
-	tab = (char**)malloc(sizeof(char*) * nb);
-	if (tab)
+	if ((tab = (char**)malloc(sizeof(char*) * nb)))
 		return (ft_tab(s, nb, c, tab));
 	return (NULL);
 }

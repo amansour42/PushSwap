@@ -17,10 +17,8 @@ int	nbr_cases(char **str)
 	int i;
 
 	i = 0;
-	while (*str)
-	{
+	while (str[i])
 		++i;
-		++str;
-	}
-	return (i);
+	printf("nbr de cases %d\n", i);
+    return (i);
 }

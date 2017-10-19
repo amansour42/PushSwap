@@ -31,13 +31,13 @@ static int	check_doublons(t_int *a)
 	t_int *tmp2;
 
 	tmp1 = a;
-	while (tmp1)
+	while (tmp1->next)
 	{
 		tmp2 = tmp1->next;
 		while (tmp2)
 		{
 			if (tmp2->nbr == tmp1->nbr)
-				return (0);
+                    return (0);
 			tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
@@ -45,44 +45,88 @@ static int	check_doublons(t_int *a)
 	return (1);
 }
 
+static void clean_split(char **s)
+{
+    //int     i;
+   int     nbr;
+    char    **str;
+
+    nbr = nbr_cases(s);
+    //i = -1;
+    str = s + nbr - 1;
+    //while (++i <= nbr)
+    free(*(s + nbr));
+    *(s + nbr) = NULL;
+    while (--nbr >= 0)
+    {
+        printf("%d = %s\n", nbr, *(s + nbr));
+        free(*(s + nbr));
+        *(s  + nbr) = NULL;
+    }
+    free(*s);
+    //**s = NULL;
+    //printf("%d = %s\n", i, s[0]);   
+    return ;
+}
+
 static int	fill_one_string(t_int **p, char **s)
 {
-	int n;
 	int nbr;
 	int i;
-	char *str;
 
-	n = nbr_cases(s); //to see for leaks
 	i = -1;
-	while (++i < n)
+	while (s[++i])
 	{
-		str = *s;
-		nbr = ft_atoi(str);
-		++s;
-		free(str);
-		if (nbr == -1 && ft_strcmp(s[i], "-1"))
-			return (0);
-		add_end_pile(p, nbr);
+		//nbr = ft_atoi(s[i]);
+        nbr = 5;
+        //if (nbr == -1 && ft_strcmp(s[i], "-1"))
+          //  return (0);
+        add_end_pile(p, nbr);
 	}
 	return (1);
 }
 
-t_int			*fill(int ac, char **av, int *n)
+void        fill(int ac, char **av, t_int **p)
 {
 	int		i;
-	t_int	*p;
+    char    **s;
 
-	p = NULL;
 	if (!check_entry(ac, av))
-		return (NULL);
-	i = 0;
-	while (++i < ac)
-	    if (!(fill_one_string(&p, ft_strsplit(av[i], ' '))))
+        return ;
+	i = 1;
+    printf("AC = %d\nav = %s\n", ac, av[1]);
+    while (i < ac)
+    {
+        s = ft_strsplit(av[i], ' ');
+        if (!(fill_one_string(p, s)))
 		{
-			*n = 0;
-			return (p);
+            //sleep(60);
+            delete_pile(p);
+            *p = NULL;
+            //sleep(60);
+            clean_split(s);
+            free(s);
+            //s = NULL;
+			return ;
 		}
-	if (!check_doublons(p))
-		*n = 0;
-	return (p);
+        //sleep(60);
+        clean_split(s);
+        free(s);
+        ++i;
+        //s = NULL;
+    }
+    //sleep(60);
+    if (!check_doublons(*p))
+    {
+        printf("YES DOUBLONS\n");
+	    //sleep(60);
+        delete_pile(p);
+        *p = NULL;
+        return ;
+        //sleep(60);
+    }
+    //sleep(60);
+    //if (p)
+      //  printf("Problem here\n");
+    return ;
 }

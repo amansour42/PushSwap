@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static char		**ft_tab(char const *str, size_t nb, char c, char **tab)
 {
@@ -29,7 +30,7 @@ static char		**ft_tab(char const *str, size_t nb, char c, char **tab)
 		{
 			i++;
 		}
-		if (!(tab[j] = ft_strdup((char const*)ft_strsub(str, 0, i))))
+		if (!(tab[j] = ft_strsub(str, 0, i)))
 			return (NULL);
 		str += i;
 		j++;
@@ -61,6 +62,7 @@ char			**ft_strsplit(char const *s, char c)
 			i++;
 		}
 	}
+    printf("cases = %zu\n", nb);  
 	tab = (char**)malloc(sizeof(char*) * nb);
 	if (tab)
 		return (ft_tab(s, nb, c, tab));

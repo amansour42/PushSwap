@@ -21,13 +21,13 @@ void	delete_pile_end(t_int **pile)
 	{
 		if (!((*pile)->next))
 		{
-			printf("je suis rentre1e\n");
+			//printf("je suis rentre1e\n");
 			free(*pile);
 			*pile = NULL;
 		}
 		else
 		{
-			printf("je suis rentree2\n");
+			//printf("je suis rentree2\n");
 			tmp = *pile;
 			while ((tmp->next)->next)
 				tmp = tmp->next;
@@ -36,6 +36,7 @@ void	delete_pile_end(t_int **pile)
 			free(ptmp);
 		}
 	}
+    //while (1);
 	return ;
 }
 

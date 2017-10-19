@@ -11,63 +11,79 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static char	*ft_blanks(char const *str)
+/*static char	*ft_blanks(char const *str)
 {
 	while ((*str >= 7 && *str <= 13) || *str == 32)
 	{
 		str++;
 	}
 	return ((char *)str);
-}
+}*/
 
-static int	ft_result(char *str, int sign)
+static int	ft_result(char const *str, int sign, int start)
 {
 	int long    n;
 	int         i;
 
 	i = 0;
 	n = 0;
-	while (*str && ft_isdigit(*str) && i++ < 9)
+	while (str[start] && ft_isdigit(str[start]) && i++ < 9)
 	{
-		n = n * 10 + *str - '0';
-		str++;
+		n = n * 10 + str[start] - '0';
+		start++;
 	}
-	if (!*str || !ft_isdigit(*str))
-		return (sign * n);
-	if ((*(str + 1) && ft_isdigit(*(str + 1))) || n > 214748364)
+	if (!str[start] || !ft_isdigit(str[start]))
+    {
+        //printf("1\n");
+        //while(1)
+        return (sign * n);
+    }
+	/*if ((str[start + 1] && ft_isdigit(str[start + 1])) || n > 214748364)
 	{
+        printf("2\n");
 		if (sign == 1)
 			return (-1);
 		return (0);
-	}
-	if ((n == 214748364 && (((*str - '0') <= 7 && sign == 1) ||
-		((*str - '0') <= 8 && sign == -1))) || n < 214748364)
-		return (sign * (n * 10 + *str - '0'));
-	if ((*(str + 1) - '0') > 8 && sign == -1)
-		return (0);
+	}*/
+	/*if ((n == 214748364 && (((str[start] - '0') <= 7 && sign == 1) ||
+		((str[start] - '0') <= 8 && sign == -1))) || n < 214748364)
+       
+    {
+        printf("3\n");
+        while (1)
+            return (sign * (n * 10 + str[start] - '0'));
+    }
+	if ((str[start + 1] - '0') > 8 && sign == -1)
+    {   
+        printf("4\n");
+        while (1)
+        return (0);
+    }*/
+    //while (1)
 	return (-1);
 }
 
-int			ft_atoi(char const *s)
+int			ft_atoi(char const *str)
 {
-	int		sign;
-	char	*str;
+    int		sign;
+    //char	*str;
+    int     i;
 
-	if (!s)
+	if (!str)
 		return (0);
 	sign = 1;
-	str = ft_blanks(s);
-	if (str[0] == '-')
+    i = 0;
+	//str = ft_blanks(s);
+	if (str[i] == '-')
 	{
 		sign = -1;
-		str++;
+		i++;
 	}
-	if (str[0] == '+')
-		str++;
-	while (*str && *str == '0')
-	{
-		str++;
-	}
-	return (ft_result(str, sign));
+	if (str[i] == '+')
+		i++;
+	while (str[i] && str[i] == '0')
+		i++;
+    return (ft_result(str, sign, i));
 }

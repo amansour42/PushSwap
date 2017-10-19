@@ -12,14 +12,30 @@
 
 #include "checker.h"
 
-void	delete_pile(t_int **pile)
+int	delete_pile(t_int **pile)
 {
-	if (*pile)
+    /*t_int *tmp;
+
+    tmp = *pile;
+    while ((*pile)->next)
+    {
+        *pile = (*pile)->next;
+        free(tmp);
+        tmp = *pile;
+    }
+    free(*pile);*/
+    /*while ((*pile)->next)
 	{
 		delete_pile_end(pile);
-		delete_pile(pile);
+	   // delete_steps(pile);
 	}
-	return ;
+    free(*pile);
+    *pile = NULL;*/
+    while(*pile)
+        delete_pile_end(pile);
+	//while (1);
+     //   ;
+	return (0);
 }
 
 void	delete_steps(t_string **steps)

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:29:46 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 16:58:06 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 13:21:27 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	add_steps_end(t_step **steps, char *str)
 	tmp = NULL;
 	if ((tmp = (t_step*)malloc(sizeof(t_step))))
 	{
-		tmp->str = str;
+		tmp->str = ft_strdup(str);
 		tmp->next = NULL;
 		if (!*steps)
 			*steps = tmp;

@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 11:40:45 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/18 16:32:38 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:56:48 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../checker.h"
 
 int	check_order(t_stack *p)
 {

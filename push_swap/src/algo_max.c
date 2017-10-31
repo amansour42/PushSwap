@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:30:00 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:13:45 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:01:18 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 void	min_end_a(t_env *env, t_step **steps)
 {

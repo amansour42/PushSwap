@@ -6,11 +6,11 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 10:23:40 by amansour          #+#    #+#              #
-#    Updated: 2017/10/30 10:27:29 by amansour         ###   ########.fr        #
+#    Updated: 2017/10/31 16:09:24 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BIN		= ./bin/
+BIN		= ./executable/
 
 all:
 	mkdir -p $(BIN)

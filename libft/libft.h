@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:42:37 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/16 12:02:25 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:40:28 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef	struct		s_list
+typedef struct		s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
-typedef struct      s_r
+typedef struct		s_r
 {
-    int             fd;
-    char            *s;
-    struct s_r      *nxt;
-}                   t_r;
+	int				fd;
+	char			*s;
+	struct s_r		*nxt;
+}					t_r;
 
 void				*ft_memmove(void *dst, void const *s, size_t size);
 void				*ft_memcpy(void *dst, void const *s, size_t size);
@@ -92,7 +92,7 @@ char				*ft_strncat(char *s, char const *s2, size_t n);
 void				ft_swap(int *a, int *b);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *element));
-int					ft_max(int *b , int n);
-void				ft_lstdel2(t_list * *l);
-int                 get_next_line(const int fd, char **line);
+int					ft_max(int *b, int n);
+void				ft_lstdel2(t_list **l);
+int					get_next_line(const int fd, char **line);
 #endif

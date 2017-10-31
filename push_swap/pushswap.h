@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 11:09:02 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 14:16:25 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:05:33 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <libc.h> //A enlever a la fin
-# include "../../libft/libft.h"
-# include "../../liblist/liblist.h"
+# include "../libft/libft.h"
+# include "../liblist/liblist.h"
 
 # define A 			env->a
 # define B 			env->b

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:35:46 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 17:06:12 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 13:33:17 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	delete_steps_first(t_step **steps)
 	{
 		tmp = *steps;
 		*steps = (*steps)->next;
+		free(tmp->str);
 		free(tmp);
 	}
 	return ;

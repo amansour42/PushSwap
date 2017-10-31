@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:37:03 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 16:23:43 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:57:03 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../checker.h"
 
 static int	check_doublons(t_stack *a)
 {
@@ -34,7 +34,7 @@ static int	check_doublons(t_stack *a)
 	return (1);
 }
 
-static void clean_split(char **s)
+static void	clean_split(char **s)
 {
 	int	nbr;
 
@@ -44,7 +44,7 @@ static void clean_split(char **s)
 	while (--nbr >= 0)
 	{
 		free(*(s + nbr));
-		*(s  + nbr) = NULL;
+		*(s + nbr) = NULL;
 	}
 	return ;
 }

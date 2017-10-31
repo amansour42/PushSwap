@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/17 11:35:32 by amansour          #+#    #+#              #
-#    Updated: 2017/10/19 12:07:42 by amansour         ###   ########.fr        #
+#    Updated: 2017/10/31 15:58:10 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -Werror -Wall -Wextra
 
 SRC_PATH = ./src
 OBJ_PATH = ./obj
-INCLUD  = ./include
+INCLUD  = checker.h
 LIB = ../libft/libft.a
 LIBLIST = ../liblist/liblist.a
 SRC = main.c fill_stack.c\
@@ -56,5 +56,3 @@ fclean: clean
 	@rm -f $(NAME) $(LIB) $(LIBLIST)
 
 re: fclean all
-	@make re -C ../liblist
-	@make re -C  ../libft

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 12:51:52 by amansour          #+#    #+#             */
-/*   Updated: 2017/09/14 10:42:11 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:38:50 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,37 @@ void		ft_build(char **str, char *s)
 		ft_strncat(s2, s, ft_strlen(s));
 		s2[ft_strlen(s) + ft_strlen(*str)] = '\0';
 	}
-	if (**str)
+	if (*str)
 		free(*str);
 	*str = s2;
 	return ;
 }
 
-int			get_line(char **line, char **str)
+int			get_line(char **line, char **str, char **s)
 {
+	size_t	i;
+	char	*s1;
+	char	*s2;
+	size_t	j;
+
 	if ((*str) && ft_strlen(*str) != ft_end(*str))
 	{
-		*str = *str + (ft_end(*str) + 1);
-		(*line)[ft_end(*line)] = '\0';
+		j = -1;
+		i = ft_end(*str) + 1;
+		s1 = (char*)malloc(ft_strlen(*str) - i);
+		s2 = (char*)malloc(i - 1);
+		ft_strncpy(s2, *str, i - 1);
+		j = 0;
+		while (i < ft_strlen(*str))
+			s1[j++] = (*str)[i++];
+		s1[j] = '\0';
+		free(*str);
+		free(*line);
+		*str = s1;
+		*line = s2;
+		free(*s);
 		return (1);
 	}
-	*str = NULL;
 	return (0);
 }
 
@@ -89,18 +105,21 @@ int			get_next_line(const int fd, char **line)
 	if (!line || fd < 0 || !(current = build_strcuture(fd, &get))
 			|| !(str = (char*)malloc(BUFF_SIZE + 1)))
 		return (-1);
-	*line = (current->s) ? ft_strdup(current->s) : "\0";
-	if (get_line(line, &(current->s)) == 1)
+	*line = (current->s) ? ft_strdup(current->s) : ft_strdup("\0");
+	if (get_line(line, &(current->s), &str) == 1)
 		return (1);
 	while (((i = read(fd, str, BUFF_SIZE)) == BUFF_SIZE) &&
 			(!(ft_memchr((void*)str, '\n', BUFF_SIZE))))
 		ft_build(line, str);
 	if (i <= 0 && !(*line)[0])
+	{
+		free(str);
 		return (i);
+	}
 	str[i] = '\0';
+	free(current->s);
 	current->s = ft_strdup(str);
 	ft_build(line, str);
-	free(str);
-	get_line(line, &(current->s));
+	get_line(line, &(current->s), &str);
 	return (1);
 }

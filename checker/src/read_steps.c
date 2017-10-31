@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 15:06:53 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 16:33:23 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:57:38 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../checker.h"
 
 static int	check_steps(char *s)
 {
@@ -25,29 +25,30 @@ static int	check_steps(char *s)
 	return (0);
 }
 
-t_step		*read_steps(int fd, int *n)
+void		read_steps(int fd, int *n, t_step **l)
 {
 	char		*line;
-	t_step		*step;
 	int			ret;
 
-	step = NULL;
 	ret = 1;
 	if (get_next_line(fd, &line) == 0 || !(ret = check_steps(line)))
 	{
 		if (*line)
 			free(line);
 		(!ret) ? --(*n) : 0;
-		return (NULL);
+		return ;
 	}
-	add_steps_end(&step, line);
+	add_steps_end(l, line);
 	free(line);
+	line = NULL;
 	while (get_next_line(fd, &line) == 1 && (ret = check_steps(line)))
 	{
-		add_steps_end(&step, line);
+		add_steps_end(l, line);
 		free(line);
+		line = NULL;
 	}
-	free(line);
+	if (line)
+		free(line);
 	(!ret) ? --(*n) : 0;
-	return (step);
+	return ;
 }

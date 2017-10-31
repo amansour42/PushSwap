@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:38:21 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:27:23 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:04:00 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static void	swap(int *tab, int a, int b)
 {

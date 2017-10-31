@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:38:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:26:19 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:04:28 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static int		just_before(t_env *env, int nbr)
 {

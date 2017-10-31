@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 13:39:33 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 16:47:57 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:56:35 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../checker.h"
 
 static void	apply_rotate_reverse(char *s, t_stack **a, t_stack **b)
 {
@@ -88,28 +88,27 @@ static void	apply_swap(char *s, t_stack **a, t_stack **b)
 	return ;
 }
 
-int			apply(t_stack **a, t_step *l)
+int			apply(t_stack **a, t_step **l)
 {
 	t_stack	*b;
-	t_step	*tmp;
+	char	*str;
 
 	b = NULL;
-	tmp = l;
-	while (tmp)
+	while (*l)
 	{
-		if ((tmp->str)[0] == 'r' && (tmp->str)[2])
-			apply_rotate_reverse(tmp->str, a, &b);
-		else if ((tmp->str)[0] == 'r')
-			apply_rotate(tmp->str, a, &b);
-		else if ((tmp->str)[0] == 'p')
-			apply_push(tmp->str, a, &b);
-		else if ((tmp->str)[0] == 's')
-			apply_swap(tmp->str, a, &b);
-		tmp = tmp->next;
+		str = (*l)->str;
+		if (str[0] == 'r' && str[2])
+			apply_rotate_reverse(str, a, &b);
+		else if (str[0] == 'r')
+			apply_rotate(str, a, &b);
+		else if (str[0] == 'p')
+			apply_push(str, a, &b);
+		else if (str[0] == 's')
+			apply_swap(str, a, &b);
+		delete_steps_first(l);
 	}
 	if (b)
 	{
-		delete_steps(&l);
 		delete_stack(&b);
 		return (0);
 	}

@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:36:51 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:19:32 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:05:54 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static t_stack	*copy_a(t_stack *a)
 {

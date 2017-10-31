@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:31:15 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:14:53 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:01:29 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 void	test_in_b(t_env *env, t_step **step)
 {

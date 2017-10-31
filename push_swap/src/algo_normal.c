@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:32:26 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:17:15 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:01:54 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static void	best_case(t_env *env, t_step *steps)
 {

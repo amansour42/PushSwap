@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:36:38 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 10:36:47 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:02:32 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 void	display_steps(t_step *steps)
 {

@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:44:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:51:23 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:04:39 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static int	*fill_from_stack(t_stack *a, int len)
 {

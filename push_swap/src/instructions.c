@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:37:25 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 15:24:34 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:03:47 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 char	*rotate(t_env *env, char c)
 {

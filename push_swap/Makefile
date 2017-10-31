@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 10:28:05 by amansour          #+#    #+#              #
-#    Updated: 2017/10/30 11:24:10 by amansour         ###   ########.fr        #
+#    Updated: 2017/10/31 16:09:42 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -Werror -Wall -Wextra
 
 SRC_PATH = ./src
 OBJ_PATH = ./obj
-INCLUD  = ./includes
+INCLUD  = pushswap.h
 LIB = ../libft/libft.a
 LIBLIST = ../liblist/liblist.a
 SRC = algo_min.c algo_max.c algo_med.c algo_normal.c checking.c display_stack.c\
@@ -55,5 +55,3 @@ fclean: clean
 	@rm -f $(NAME) $(LIB) $(LIBLIST)
 
 re: fclean all
-	@make re -C ../liblist
-	@make re -C  ../libft

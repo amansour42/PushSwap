@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 11:21:08 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 16:13:32 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:08:51 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 int	main(int ac, char **av)
 {
@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 	{
 		write(2, "Error\n", 6);
 		free(env);
-		while (1);
 		return (0);
 	}
 	if (!check_order(A))

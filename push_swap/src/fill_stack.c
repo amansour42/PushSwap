@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:37:03 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/30 16:10:08 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:04:15 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 static int	check_doublons(t_stack *a)
 {
@@ -56,8 +56,8 @@ static int	check_digit(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]) &&  str[i] != '-'
-				&& str[i] != '+')
+		if (!ft_isdigit(str[i]) && str[i] != '-'
+			&& str[i] != '+')
 			return (0);
 		++i;
 	}

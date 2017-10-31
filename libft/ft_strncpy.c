@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/20 18:12:31 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/01 12:29:53 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:26:38 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_strncpy(char *dest, char const *src, size_t len)
 		dest[i] = '\0';
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }

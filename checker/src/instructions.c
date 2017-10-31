@@ -6,11 +6,11 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 13:41:48 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/18 16:40:20 by amansour         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:57:20 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../checker.h"
 
 void	rotate(t_stack **p)
 {

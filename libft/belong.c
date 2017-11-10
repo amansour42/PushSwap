@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   belong.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/17 19:54:41 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/01 15:16:41 by amansour         ###   ########.fr       */
+/*   Created: 2017/11/01 14:52:30 by amansour          #+#    #+#             */
+/*   Updated: 2017/11/01 15:01:38 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char const *str)
+int	belong(char *str, char s)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	while (str[i])
-		i++;
-	return (i);
+	{
+		if (str[i] == s)
+			return (1);
+		++i;
+	}
+	return (0);
 }

@@ -14,6 +14,11 @@
 
 void	algo_min(t_env *env, t_step **steps)
 {
+    if (ASIZE == 2)
+    {
+        add_steps_end(steps, stack_swap(env, 'a'));
+        return ;
+    }
 	while (A && !check_order(A))
 	{
 		if (ANBR == AMAX)

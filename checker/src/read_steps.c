@@ -22,7 +22,7 @@ static int	check_steps(char *s)
 		return (1);
 	if (!ft_strcmp(s, "rr") || !ft_strcmp(s, "rrr") || !ft_strcmp(s, "ss"))
 		return (1);
-	return (0);
+    return (0);
 }
 
 void		read_steps(int fd, int *n, t_step **l)
@@ -31,13 +31,17 @@ void		read_steps(int fd, int *n, t_step **l)
 	int			ret;
 
 	ret = 1;
-	if (get_next_line(fd, &line) == 0 || !(ret = check_steps(line)))
-	{
-		if (*line)
-			free(line);
-		(!ret) ? --(*n) : 0;
+	if (get_next_line(fd, &line) == 0)
+    {
+        *l = NULL;
 		return ;
 	}
+    if (!(ret = check_steps(line)))
+    {
+        free(line);
+		(!ret) ? --(*n) : 0;
+		return ; 
+    }
 	add_steps_end(l, line);
 	free(line);
 	line = NULL;

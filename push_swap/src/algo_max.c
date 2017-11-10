@@ -14,7 +14,7 @@
 
 void	min_end_a(t_env *env, t_step **steps)
 {
-	while (nbr_from_position(A, ASIZE) == AMIN)
+	while (ASIZE > 1 && nbr_from_position(A, ASIZE) == AMIN)
 	{
 		add_steps_end(steps, reverse_rotate(env, 'a'));
 		add_steps_end(steps, push(env, 'b'));

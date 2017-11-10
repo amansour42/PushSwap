@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/01 12:36:18 by amansour          #+#    #+#              #
-#    Updated: 2017/10/16 12:01:19 by amansour         ###   ########.fr        #
+#    Updated: 2017/11/03 14:10:47 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c \
 	ft_strnstr.c ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
 	ft_strtrim.c ft_tolower.c ft_toupper.c ft_swap.c ft_max.c\
-    get_next_line.c ft_lstdel2.c\
+	get_next_line.c ft_lstdel2.c belong.c ft_convert_base.c\
 
 INCLUDS = libft.h
 

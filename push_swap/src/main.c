@@ -26,13 +26,14 @@ int	main(int ac, char **av)
 		free(env);
 		return (0);
 	}
-	if (!check_order(A))
-		sort(env);
-	if (NORMAL && steps_length(NORMAL) > steps_length(QUICK))
-		display_steps(NORMAL);
+	if (check_order(A))
+	    return (0);
+    sort(env);
+	if (NORMAL && steps_length(NORMAL) < steps_length(QUICK))
+	    display_steps(NORMAL);
 	else
 		display_steps(QUICK);
 	clean(env);
 	free(env);
-	return (0);
+    return (0);
 }

@@ -32,7 +32,7 @@ void	algo_med(t_env *env)
 	while (1)
 	{
 		min_end_a(env, &step);
-		while (check_sup(A, MED))
+        while (check_sup(A, MED) && ASIZE > 3)
 		{
 			if (ANBR < MED)
 			{

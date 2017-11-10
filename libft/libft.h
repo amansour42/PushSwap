@@ -6,13 +6,13 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:42:37 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 15:40:28 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/03 14:13:23 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE  200
+# define BUFF_SIZE  2048
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -30,6 +30,13 @@ typedef struct		s_r
 	char			*s;
 	struct s_r		*nxt;
 }					t_r;
+typedef struct      s_fd
+{
+    int             fd;
+    char            *line;
+    size_t          start;
+    struct s_fd     *next;
+}                   t_fd;
 
 void				*ft_memmove(void *dst, void const *s, size_t size);
 void				*ft_memcpy(void *dst, void const *s, size_t size);
@@ -95,4 +102,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *element));
 int					ft_max(int *b, int n);
 void				ft_lstdel2(t_list **l);
 int					get_next_line(const int fd, char **line);
+int					belong(char *str, char c);
+int					ft_convert_base(char *str, int base);
 #endif

@@ -16,12 +16,14 @@ static t_stack	*copy_a(t_stack *a)
 {
 	t_stack *copy;
 	t_stack *tmp;
+    int     nbr;
 
 	tmp = a;
 	copy = NULL;
 	while (tmp)
 	{
-		add_stack_end(&copy, tmp->nbr);
+        nbr = tmp->nbr;
+		add_stack_end(&copy, nbr);
 		tmp = tmp->next;
 	}
 	return (copy);
@@ -29,8 +31,9 @@ static t_stack	*copy_a(t_stack *a)
 
 int				make_env(t_env *env)
 {
-	if (!(ACOPY = copy_a(A)))
-		return (FALSE);
+    ACOPY = NULL;
+    if (ASIZE <= 100 && !(ACOPY = copy_a(A)))
+	   return (FALSE);
 	B = NULL;
 	NORMAL = NULL;
 	QUICK = NULL;

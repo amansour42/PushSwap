@@ -22,5 +22,6 @@ void	display_stack(t_stack *pile)
 		printf("%d ", tmp->nbr);
 		tmp = tmp->next;
 	}
-	return ;
+	printf("\n");
+    return ;
 }

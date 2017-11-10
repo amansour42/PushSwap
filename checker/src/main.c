@@ -31,6 +31,7 @@ int			main(int ac, char **av)
 		return (0);
 	if (!(pile = fill(ac, av)))
 	{
+        printf("OK\n");
 		write(2, ERROR, 6);
 		return (0);
 	}
@@ -39,11 +40,15 @@ int			main(int ac, char **av)
 	{
 		clean(&pile, &l);
 		write(2, "Error\n", 6);
-		return (0);
+		while (1)
+            ;
+        return (0);
 	}
-	(apply(&pile, &l) && check_order(pile)) ?
-	write(1, OK, 3) : write(1, KO, 3);
+    if (!l)
+        (check_order(pile)) ? write(1, OK, 3) : write(1, KO, 3);
+    else
+        (apply(&pile, &l) && check_order(pile)) ?
+            write(1, OK, 3) : write(1, KO, 3);
 	delete_stack(&pile);
-	sleep(30);
-	return (0);
+    return (0);
 }

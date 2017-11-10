@@ -1,125 +1,117 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/05 12:51:52 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 15:38:50 by amansour         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-t_r			*build_strcuture(const int fd, t_r **get)
+static t_fd	*ft_checkfiles(int fd, t_fd *files)
 {
-	t_r *m;
-	t_r *c;
+	t_fd	*begin_files;
 
-	c = *get;
-	while (c && c->fd != fd)
-		c = c->nxt;
-	if (!c && (m = (t_r*)malloc(sizeof(t_r))))
+	begin_files = files;
+	if (files)
 	{
-		m->fd = fd;
-		m->nxt = NULL;
-		m->s = NULL;
-		if ((c = *get))
+		while (files->next->fd != begin_files->fd)
 		{
-			while (c->nxt)
-				c = c->nxt;
-			c->nxt = m;
+			if (files->fd == fd)
+				return (files);
+			files = files->next;
 		}
-		else
-			*get = m;
-		return (m);
+		if (files->fd == fd)
+			return (files);
 	}
-	return (c);
+	return (NULL);
 }
 
-size_t		ft_end(char *str)
+static t_fd	*ft_createfile(char *buf, int fd, t_fd *files)
 {
-	size_t i;
+	t_fd	*file;
+	t_fd	*file_buf;
+
+	if ((file = (t_fd*)ft_memalloc(sizeof(t_fd))))
+	{
+		file->line = ft_strdup(buf);
+		file->start = 0;
+		file->fd = fd;
+		if (!files)
+			file->next = file;
+		else
+		{
+			file_buf = files->next;
+			files->next = file;
+			file->next = file_buf;
+		}
+	}
+	return (file);
+}
+
+static int	ft_checkbuf(char *buf, t_fd **files, int fd)
+{
+	int		i;
+	int		res;
+	char	*str_buf;
+	t_fd	*file;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
-		++i;
-	return (i);
-}
-
-void		ft_build(char **str, char *s)
-{
-	char *s2;
-
-	s2 = NULL;
-	if ((s2 = (char*)malloc(sizeof(char) * (ft_strlen(*str) +
-						ft_strlen(s) + 1))))
+	res = 0;
+	while (buf[i] != '\0' && buf[i] != '\n')
+		i++;
+	if (buf[i] == '\n')
+		res = 1;
+	if (!files || !(*files) || !(ft_checkfiles(fd, *files)))
+		*files = ft_createfile(buf, fd, *files);
+	else
 	{
-		if (**str)
-			ft_strcpy(s2, *str);
-		ft_strncat(s2, s, ft_strlen(s));
-		s2[ft_strlen(s) + ft_strlen(*str)] = '\0';
+		file = ft_checkfiles(fd, *files);
+		str_buf = file->line;
+		file->line = ft_strjoin(file->line, buf);
+		free(str_buf);
 	}
-	if (*str)
-		free(*str);
-	*str = s2;
-	return ;
+	return (res);
 }
 
-int			get_line(char **line, char **str, char **s)
+static void	ft_fill_line(t_fd *file, char **line, int fd, t_fd **files)
 {
 	size_t	i;
-	char	*s1;
-	char	*s2;
-	size_t	j;
+	t_fd	*file_buf;
 
-	if ((*str) && ft_strlen(*str) != ft_end(*str))
+	i = file->start;
+	while (file->line[i] != '\0' && file->line[i] != '\n')
+		i++;
+	*line = ft_strsub(file->line, file->start, i - file->start);
+	file->start = i;
+	if (file->line[i] == '\n')
+		file->start++;
+	if (file->line[file->start] == 0)
 	{
-		j = -1;
-		i = ft_end(*str) + 1;
-		s1 = (char*)malloc(ft_strlen(*str) - i);
-		s2 = (char*)malloc(i - 1);
-		ft_strncpy(s2, *str, i - 1);
-		j = 0;
-		while (i < ft_strlen(*str))
-			s1[j++] = (*str)[i++];
-		s1[j] = '\0';
-		free(*str);
-		free(*line);
-		*str = s1;
-		*line = s2;
-		free(*s);
-		return (1);
+		file_buf = file;
+		if (file->fd == file->next->fd)
+			*files = NULL;
+		else
+			while (file->next->fd != fd)
+				file = file->next;
+		file->next = file->next->next;
+		if ((*files) && (*files)->fd == file_buf->fd)
+			*files = (*files)->next;
+		free(file_buf->line);
+		free(file_buf);
 	}
-	return (0);
 }
 
-int			get_next_line(const int fd, char **line)
+int			get_next_line(int const fd, char **line)
 {
-	static t_r	*get;
-	t_r			*current;
-	int			i;
-	char		*str;
+	char		buf[BUFF_SIZE + 1];
+	int			ret;
+	int			res;
+	static t_fd	*files = NULL;
 
-	if (!line || fd < 0 || !(current = build_strcuture(fd, &get))
-			|| !(str = (char*)malloc(BUFF_SIZE + 1)))
+	res = -1;
+	if (fd < 0 || fd == 1 || fd == 2 || !line)
 		return (-1);
-	*line = (current->s) ? ft_strdup(current->s) : ft_strdup("\0");
-	if (get_line(line, &(current->s), &str) == 1)
-		return (1);
-	while (((i = read(fd, str, BUFF_SIZE)) == BUFF_SIZE) &&
-			(!(ft_memchr((void*)str, '\n', BUFF_SIZE))))
-		ft_build(line, str);
-	if (i <= 0 && !(*line)[0])
-	{
-		free(str);
-		return (i);
-	}
-	str[i] = '\0';
-	free(current->s);
-	current->s = ft_strdup(str);
-	ft_build(line, str);
-	get_line(line, &(current->s), &str);
+	ret = read(fd, buf, BUFF_SIZE);
+	if (ret == -1 || (ret == 0 && (!ft_checkfiles(fd, files))))
+		return (ret);
+	buf[ret] = '\0';
+	if (ret > 0)
+		if (!(res = ft_checkbuf((char*)buf, &files, fd)))
+			get_next_line(fd, line);
+	if (((ret > 0 && res == 1) || ret == 0) && ft_checkfiles(fd, files))
+		ft_fill_line(ft_checkfiles(fd, files), line, fd, &files);
 	return (1);
 }

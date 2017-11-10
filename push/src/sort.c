@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:44:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/10 12:10:06 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 15:18:57 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			define_med(t_env *env)
 
 void		sort(t_env *env)
 {
+	ACOPY = NULL;
 	ASIZE = length(A);
 	if (ASIZE <= 3)
 	{

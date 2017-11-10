@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/17 12:08:03 by amansour          #+#    #+#             */
-/*   Updated: 2017/05/01 11:32:30 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 10:39:54 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if ((str = ft_strnew(len)))
-    {
-        ft_strncpy(str, s + start, len);
-	    str[len] = '\0';
-    }
-    return (str);
+	{
+		ft_strncpy(str, s + start, len);
+		str[len] = '\0';
+	}
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 11:09:02 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 16:05:33 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 12:09:30 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <libc.h> //A enlever a la fin
 # include "../libft/libft.h"
 # include "../liblist/liblist.h"
 
@@ -32,7 +31,7 @@
 # define BMAX 		env->b_max
 # define BMIN 		env->b_min
 # define ASIZE 		env->a_size
-# define BSIZE      env->b_size
+# define BSIZE		env->b_size
 # define ASECOND 	ANEXT->nbr
 # define BSECOND 	BNEXT->nbr
 # define ACOPY  	env->a_copy
@@ -44,7 +43,7 @@
 # define PAD 		env->pad
 # define MINT		-2147483648
 
-typedef struct 		s_env
+typedef struct		s_env
 {
 	t_stack			*a;
 	t_stack			*b;
@@ -56,20 +55,18 @@ typedef struct 		s_env
 	int				b_max;
 	int				b_min;
 	int				med;
-	int 			pad;
+	int				pad;
 	int				len_normal;
 	int				len_quick;
 	t_step			*quick_steps;
 	t_step			*normal_steps;
-}					t_env; 
+}					t_env;
 
 int					main(int ac, char **av);
-t_stack 			*fill(int ac, char **av);
-//env.c
-int 				make_env(t_env *env);
+t_stack				*fill(int ac, char **av);
+int					make_env(t_env *env);
 void				update_env(t_env *env);
 void				clean(t_env *env);
-//sorting
 void				sort(t_env *env);
 void				algo_normal(t_env *env);
 void				algo_min(t_env *env, t_step **steps);
@@ -80,17 +77,12 @@ void				test_in_b(t_env *env, t_step **step);
 int					define_med(t_env *env);
 void				quicksort(int *tableau, int len);
 void				min_end_a(t_env *env, t_step **steps);
-
-//stack
-void				display_stack(t_stack *pile);
-//steps
-void 				display_steps(t_step *steps);
-//instructions
-char    			*rotate(t_env *env, char c);
-char    			*reverse_rotate(t_env *env, char c);
-char    			*stack_swap(t_env *env, char c);
-char    			*push(t_env *env, char c);
-//check stack
-int 				check_order(t_stack *p);
-int 				check_sup(t_stack *p, int nbr);
+void				display_steps(t_step *steps);
+char				*rotate(t_env *env, char c);
+char				*reverse_rotate(t_env *env, char c);
+char				*stack_swap(t_env *env, char c);
+char				*push(t_env *env, char c);
+int					check_order(t_stack *p);
+int					check_sup(t_stack *p, int nbr);
+t_stack				*copy_a(t_stack *a);
 #endif

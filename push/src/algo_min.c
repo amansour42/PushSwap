@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:31:31 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 16:01:40 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 10:07:50 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	algo_min(t_env *env, t_step **steps)
 {
-    if (ASIZE == 2)
-    {
-        add_steps_end(steps, stack_swap(env, 'a'));
-        return ;
-    }
-	while (A && !check_order(A))
+	if (ASIZE == 2)
+	{
+		add_steps_end(steps, stack_swap(env, 'a'));
+		return ;
+	}
+	AMAX = max(A);
+	AMIN = min(A);
+	while (!check_order(A))
 	{
 		if (ANBR == AMAX)
 			add_steps_end(steps, rotate(env, 'a'));

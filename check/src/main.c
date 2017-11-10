@@ -5,35 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 11:21:08 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 16:08:51 by amansour         ###   ########.fr       */
+/*   Created: 2017/10/11 16:30:16 by amansour          #+#    #+#             */
+/*   Updated: 2017/11/10 12:26:06 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "../checker.h"
 
-int	main(int ac, char **av)
+static void	clean(t_stack **pile, t_step **l)
 {
-	t_env *env;
+	delete_steps(l);
+	delete_stack(pile);
+	return ;
+}
 
+int			main(int ac, char **av)
+{
+	t_stack	*pile;
+	t_step	*l;
+
+	l = NULL;
 	if (ac < 2)
 		return (0);
-	if (!(env = (t_env*)malloc(sizeof(t_env))))
-		return (0);
-	if (!(A = fill(ac, av)))
+	if (!(pile = fill(ac, av)))
 	{
-		write(2, "Error\n", 6);
-		free(env);
+		write(2, ERROR, 6);
 		return (0);
 	}
-	if (check_order(A))
-	    return (0);
-    sort(env);
-	if (NORMAL && steps_length(NORMAL) < steps_length(QUICK))
-	    display_steps(NORMAL);
+	if (!read_steps(0, &l))
+	{
+		clean(&pile, &l);
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	if (!l)
+		(check_order(pile)) ? write(1, OK, 3) : write(1, KO, 3);
 	else
-		display_steps(QUICK);
-	clean(env);
-	free(env);
-    return (0);
+		(apply(&pile, &l) && check_order(pile)) ?
+			write(1, OK, 3) : write(1, KO, 3);
+	delete_stack(&pile);
+	return (0);
 }

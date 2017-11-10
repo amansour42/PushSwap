@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:42:37 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/03 14:13:23 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 10:42:10 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,13 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_r
+typedef struct		s_fd
 {
 	int				fd;
-	char			*s;
-	struct s_r		*nxt;
-}					t_r;
-typedef struct      s_fd
-{
-    int             fd;
-    char            *line;
-    size_t          start;
-    struct s_fd     *next;
-}                   t_fd;
+	char			*line;
+	size_t			start;
+	struct s_fd		*next;
+}					t_fd;
 
 void				*ft_memmove(void *dst, void const *s, size_t size);
 void				*ft_memcpy(void *dst, void const *s, size_t size);

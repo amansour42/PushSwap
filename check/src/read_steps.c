@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 15:06:53 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 15:57:38 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 10:59:15 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,21 @@ static int	check_steps(char *s)
 		return (1);
 	if (!ft_strcmp(s, "rr") || !ft_strcmp(s, "rrr") || !ft_strcmp(s, "ss"))
 		return (1);
-    return (0);
+	return (0);
 }
 
-void		read_steps(int fd, int *n, t_step **l)
+int			read_steps(int fd, t_step **l)
 {
 	char		*line;
 	int			ret;
 
-	ret = 1;
 	if (get_next_line(fd, &line) == 0)
-    {
-        *l = NULL;
-		return ;
+		return (1);
+	if (!(ret = check_steps(line)))
+	{
+		free(line);
+		return (0);
 	}
-    if (!(ret = check_steps(line)))
-    {
-        free(line);
-		(!ret) ? --(*n) : 0;
-		return ; 
-    }
 	add_steps_end(l, line);
 	free(line);
 	line = NULL;
@@ -53,6 +48,5 @@ void		read_steps(int fd, int *n, t_step **l)
 	}
 	if (line)
 		free(line);
-	(!ret) ? --(*n) : 0;
-	return ;
+	return (ret);
 }

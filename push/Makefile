@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 10:28:05 by amansour          #+#    #+#              #
-#    Updated: 2017/10/31 16:09:42 by amansour         ###   ########.fr        #
+#    Updated: 2017/11/10 12:27:58 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_PATH = ./obj
 INCLUD  = pushswap.h
 LIB = ../libft/libft.a
 LIBLIST = ../liblist/liblist.a
-SRC = algo_min.c algo_max.c algo_med.c algo_normal.c checking.c display_stack.c\
+SRC = algo_min.c algo_max.c algo_med.c algo_normal.c checking.c\
 	  display_steps.c env.c main.c fill_stack.c instructions.c push_to_a.c\
 	  quick_sort.c sort.c\
 

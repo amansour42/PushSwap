@@ -6,23 +6,23 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:36:51 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 16:05:54 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 12:10:35 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-static t_stack	*copy_a(t_stack *a)
+t_stack			*copy_a(t_stack *a)
 {
-	t_stack *copy;
-	t_stack *tmp;
-    int     nbr;
+	t_stack	*copy;
+	t_stack	*tmp;
+	int		nbr;
 
 	tmp = a;
 	copy = NULL;
 	while (tmp)
 	{
-        nbr = tmp->nbr;
+		nbr = tmp->nbr;
 		add_stack_end(&copy, nbr);
 		tmp = tmp->next;
 	}
@@ -31,9 +31,9 @@ static t_stack	*copy_a(t_stack *a)
 
 int				make_env(t_env *env)
 {
-    ACOPY = NULL;
-    if (ASIZE <= 100 && !(ACOPY = copy_a(A)))
-	   return (FALSE);
+	ACOPY = NULL;
+	if (ASIZE <= 100 && !(ACOPY = copy_a(A)))
+		return (FALSE);
 	B = NULL;
 	NORMAL = NULL;
 	QUICK = NULL;
@@ -65,6 +65,7 @@ void			update_env(t_env *env)
 void			clean(t_env *env)
 {
 	delete_stack(&A);
+	delete_stack(&ACOPY);
 	delete_steps(&QUICK);
 	if (NORMAL)
 		delete_steps(&NORMAL);

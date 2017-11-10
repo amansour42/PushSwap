@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:31:15 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 16:01:29 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 11:54:01 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	algo_med(t_env *env)
 	while (1)
 	{
 		min_end_a(env, &step);
-        while (check_sup(A, MED) && ASIZE > 3)
+		while (check_sup(A, MED) && ASIZE > 3)
 		{
 			if (ANBR < MED)
 			{

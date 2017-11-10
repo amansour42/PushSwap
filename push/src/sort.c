@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 10:44:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 16:04:39 by amansour         ###   ########.fr       */
+/*   Updated: 2017/11/10 12:10:06 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ int			define_med(t_env *env)
 
 	array = fill_from_stack(A, ASIZE);
 	quicksort(array, ASIZE);
-	if (ASIZE < 50)
-	{
+	if (ASIZE < 100)
 		med = array[(ASIZE - 1) / 2];
-		PAD = ASIZE / 2;
-	}
 	else
 	{
 		med = array[(ASIZE - 1) / 10];
@@ -56,20 +53,20 @@ int			define_med(t_env *env)
 void		sort(t_env *env)
 {
 	ASIZE = length(A);
-    if (ASIZE <= 3)
+	if (ASIZE <= 3)
 	{
-		algo_min(env, &QUICK); 
+		algo_min(env, &QUICK);
 		return ;
 	}
 	if (!make_env(env))
 		return ;
 	MED = define_med(env);
-    if (ASIZE < 100)
-    {
-        algo_normal(env);
-	    delete_stack(&A);
-        A = ACOPY;
-    }
+	if (ASIZE <= 100)
+	{
+		algo_normal(env);
+		delete_stack(&A);
+		A = copy_a(ACOPY);
+	}
 	if (ASIZE < 50)
 		algo_med(env);
 	else

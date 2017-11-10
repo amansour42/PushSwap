@@ -5,50 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 16:30:16 by amansour          #+#    #+#             */
-/*   Updated: 2017/10/31 15:56:09 by amansour         ###   ########.fr       */
+/*   Created: 2017/10/30 11:21:08 by amansour          #+#    #+#             */
+/*   Updated: 2017/11/10 12:12:38 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../pushswap.h"
 
-static void	clean(t_stack **pile, t_step **l)
+int	main(int ac, char **av)
 {
-	delete_steps(l);
-	delete_stack(pile);
-	return ;
-}
+	t_env *env;
 
-int			main(int ac, char **av)
-{
-	t_stack	*pile;
-	t_step	*l;
-	int		pb;
-
-	pb = 1;
-	l = NULL;
 	if (ac < 2)
 		return (0);
-	if (!(pile = fill(ac, av)))
+	if (!(env = (t_env*)malloc(sizeof(t_env))))
+		return (0);
+	if (!(A = fill(ac, av)))
 	{
-        printf("OK\n");
-		write(2, ERROR, 6);
+		write(2, "Error\n", 6);
+		free(env);
 		return (0);
 	}
-	read_steps(0, &pb, &l);
-	if (!pb)
-	{
-		clean(&pile, &l);
-		write(2, "Error\n", 6);
-		while (1)
-            ;
-        return (0);
-	}
-    if (!l)
-        (check_order(pile)) ? write(1, OK, 3) : write(1, KO, 3);
-    else
-        (apply(&pile, &l) && check_order(pile)) ?
-            write(1, OK, 3) : write(1, KO, 3);
-	delete_stack(&pile);
-    return (0);
+	if (check_order(A))
+		return (0);
+	sort(env);
+	if (NORMAL && steps_length(NORMAL) < steps_length(QUICK))
+		display_steps(NORMAL);
+	else
+		display_steps(QUICK);
+	clean(env);
+	free(env);
+	return (0);
 }
